@@ -14,7 +14,9 @@
 #     → ブランチやプルリクからは鍵を使えない（この鍵は reflame.co.jp 全体に入れるため）
 #   - .github/ と scripts/ の変更は CODEOWNERS で中山さんのレビュー必須
 #   - 転送先は下の DEPLOY_PATH に固定。/lp/<事業部>/<LP名>/ の形以外なら止まる
-#   - 転送するのは index.html と assets/ だけ（include 方式。scripts/ や README は上がらない）
+#   - 転送するのは scripts/deploy-files.sh が出す一覧だけ（許可リスト方式・2026-09-29）
+#     = index.html ＋ assets/ の画像/css/js/フォント/動画。php・.htaccess・svg・html・シンボリックリンクは検品で止める
+#     （assets/ は Code Owners の対象外なので、ここで止めないと担当者1人でサーバー全体に届く）
 #   - 削除同期(--delete)はしない。サーバー側で不要になったファイルは手動で片付ける
 #   - リポジトリ変数 DEPLOY_ENABLED が 'true' でない間は、マージしても dry-run 止まり
 # ============================================================
@@ -35,6 +37,8 @@ env:
   DEPLOY_USER: r1300591
   DEPLOY_PATH: /home/r1300591/public_html/reflame.co.jp/lp/newgrads/justdoito/
   LIVE_URL: https://reflame.co.jp/lp/newgrads/justdoito/
+  # -l を付けない＋--no-links＝シンボリックリンクは送らない。--files-from の一覧以外は送らない
+  RSYNC_OPTS: -rtzc --no-links --chmod=D755,F644 --itemize-changes
 
 jobs:
   check:
@@ -43,6 +47,19 @@ jobs:
       - uses: actions/checkout@v5
       - name: 検品（preflight 相当）
         run: bash scripts/check.sh .
+      - name: 転送の予行（ローカル・鍵なし）
+        # 本番と同じ一覧・同じ rsync オプションで手元の一時フォルダへ写し、一覧外が1つも出ないことを確かめる
+        run: |
+          bash scripts/deploy-files.sh . > "$RUNNER_TEMP/files.txt"
+          out="$RUNNER_TEMP/out"; mkdir -p "$out"
+          rsync $RSYNC_OPTS --files-from="$RUNNER_TEMP/files.txt" ./ "$out/" > /dev/null
+          (cd "$out" && find . -type f -o -type l | sed 's|^\./||' | sort) > "$RUNNER_TEMP/copied.txt"
+          sort "$RUNNER_TEMP/files.txt" > "$RUNNER_TEMP/want.txt"
+          if diff -u "$RUNNER_TEMP/want.txt" "$RUNNER_TEMP/copied.txt"; then
+            echo "✓ 転送予定 $(wc -l < "$RUNNER_TEMP/want.txt") 件・一覧外の転送なし"
+          else
+            echo "🛑 一覧と実際に写ったファイルが一致しない"; exit 1
+          fi
 
   deploy:
     needs: check
@@ -93,11 +110,15 @@ jobs:
           fi
           echo "✓ SSH接続・転送先フォルダの実在を確認"
 
+      - name: 転送リストの作成
+        run: |
+          bash scripts/deploy-files.sh . > "$RUNNER_TEMP/files.txt"
+          echo "転送予定 $(wc -l < "$RUNNER_TEMP/files.txt") 件:"; cat "$RUNNER_TEMP/files.txt"
+
       - name: 転送（rsync）
         run: |
-          rsync -rltvzc --itemize-changes ${{ steps.mode.outputs.dry }} \
-            --chmod=D755,F644 \
-            --include='index.html' --include='assets/***' --exclude='*' \
+          rsync $RSYNC_OPTS ${{ steps.mode.outputs.dry }} \
+            --files-from="$RUNNER_TEMP/files.txt" \
             -e "ssh -i $HOME/.ssh/deploy_key -p $DEPLOY_PORT -o BatchMode=yes" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
 
@@ -112,8 +133,9 @@ jobs:
           done
           [ "$got" = "$want" ] || { echo "🛑 本番の index.html がリポジトリと一致しない"; exit 1; }
           fail=0
-          for f in assets/*; do
+          # パイプ(|)で while に渡すと fail が外に伝わらないので、プロセス置換で読む
+          while IFS= read -r f; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "${LIVE_URL}${f}")
             [ "$code" = "200" ] || { echo "🛑 $f → HTTP $code"; fail=1; }
-          done
+          done < <(grep '^assets/' "$RUNNER_TEMP/files.txt")
           [ $fail -eq 0 ] && echo "✓ assets 全て HTTP 200" || exit 1
