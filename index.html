@@ -36,7 +36,7 @@
 ------------------------------------------------------------------
   ■ 設定済みの導線
    LINE     : https://line.me/R/ti/p/@514vrprd        （data-cv="line" の5箇所）
-   面談予約 : https://designer.my.site.com/scheduling?slug=tiktoklive-ito
+   面談予約 : https://designer.my.site.com/scheduling?slug=sns-ito
    Instagram: https://www.instagram.com/_rraaiiffuu_/
    TikTok   : https://www.tiktok.com/@shukatsu.coach
 ------------------------------------------------------------------
@@ -437,9 +437,12 @@ section{padding:72px 0}
 .book__steps i{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;
   background:var(--accent);color:#fff;font-family:var(--ff-en);font-style:normal;font-size:9px;
   flex:0 0 auto}
-#reflame-booking{min-height:460px;padding:8px}
-#reflame-booking:empty::before{content:"予約フォームを読み込んでいます…";display:grid;
-  place-items:center;min-height:440px;font-size:12px;letter-spacing:.08em;color:var(--sub)}
+#reflame-booking{padding:8px;min-height:0}
+/* ウィジェットが出せないときは枠ごと畳み、予約ページへのボタンを主役にする */
+.book.is-unavailable #reflame-booking{display:none}
+.book.is-unavailable .book__fb{border-top:0;padding-top:6px}
+.book.is-unavailable .book__fb .btn{background:var(--black);color:#fff;border-color:var(--black)}
+.book.is-unavailable .book__steps{display:none}
 .book__fb{padding:18px 22px 22px;border-top:1px solid var(--line);text-align:center}
 .book__fb p{font-size:11.5px;line-height:1.9;color:var(--sub);letter-spacing:.04em;margin-bottom:12px}
 .book__fb .btn{padding:14px 22px;font-size:13px}
@@ -613,7 +616,7 @@ section{padding:72px 0}
   .cta2--fin{max-width:660px;margin-inline:auto}
   .book{max-width:820px;margin-inline:auto}
   .book__alt{max-width:440px;margin-inline:auto}
-  #reflame-booking{min-height:560px;padding:14px}
+  #reflame-booking{padding:14px}
   .band .cta2{max-width:660px;margin-inline:auto}
 }
 </style>
@@ -1012,10 +1015,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <!-- 予約ウィジェット：Salesforce Scheduler -->
       <div id="reflame-booking"></div>
-      <script src="https://designer.my.site.com/schedulingvforcesite/services/apexrest/booking/v1/embed.js" data-slug="tiktoklive-ito" data-target="#reflame-booking"></script>
+      <script src="https://designer.my.site.com/schedulingvforcesite/services/apexrest/booking/v1/embed.js" data-slug="sns-ito" data-target="#reflame-booking"></script>
       <div class="book__fb">
         <p>入力フォームが表示されない場合は、こちらから</p>
-        <a href="https://designer.my.site.com/scheduling?slug=tiktoklive-ito" class="btn btn--ghost" data-cv="meeting">予約ページを開く</a>
+        <a href="https://designer.my.site.com/scheduling?slug=sns-ito" class="btn btn--ghost" data-cv="meeting">予約ページを開く</a>
       </div>
     </div>
     <div class="book__alt rv">
@@ -1088,6 +1091,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
+  // 予約ウィジェットが描画できたか判定（Shadow DOM 内に入力欄があるか）
+  setTimeout(function(){
+    var b = document.getElementById('reflame-booking');
+    if (!b) return;
+    var root = b.shadowRoot || b;
+    if (!root.querySelector('input,select,textarea,iframe')) {
+      document.querySelector('.book').classList.add('is-unavailable');
+    }
+  }, 6000);
+
   var ds = document.querySelectorAll('.faq details');
   ds.forEach(function(d){
     d.addEventListener('toggle', function(){
@@ -1098,7 +1111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <!-- ============ 計測（2026-09-28 Claude追加） ============
      ① CTAクリック: data-cv="line" / "meeting" を cta_click として送る（CVではない・中間指標）
-     ② 予約CV: 枠 tiktoklive-ito は cvEnabled=false（config API 2026-09-28実測）＝
+     ② 予約CV: 枠 sns-ito（旧 tiktoklive-ito・2026-09-29にSF側でslug変更）は cvEnabled=false（config API 2026-09-29実測）＝
         埋め込みはCVを送らない。ここの lead_submit が唯一の送信元（二重計測にならない）。
         ★bookingId がある時だけ成果にする。detail.type はお断り時も 'booking' で来るため判定に使わない。
         ★枠側を cvEnabled=true に変えたら、ここの lead_submit を消すこと（1予約=generate_lead 2件になる）。
