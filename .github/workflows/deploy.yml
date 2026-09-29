@@ -72,8 +72,14 @@ jobs:
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
-            "test -d '$DEPLOY_PATH'" || { echo "🛑 サーバーに転送先フォルダが無い（LP名の誤り？）"; exit 1; }
+          # 接続失敗(255)とフォルダ不在(1)を分けて表示する
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" -o BatchMode=yes -o ConnectTimeout=20 "$DEPLOY_USER@$DEPLOY_HOST" \
+            "test -d '$DEPLOY_PATH'"; rc=$?
+          if [ $rc -eq 255 ]; then
+            echo "🛑 SSH接続に失敗（'Connection closed' ならお名前.com の国外アクセス制限、'Permission denied' なら鍵の不一致）"; exit 1
+          elif [ $rc -ne 0 ]; then
+            echo "🛑 サーバーに転送先フォルダが無い（LP名の誤り？）"; exit 1
+          fi
           echo "✓ SSH接続・転送先フォルダの実在を確認"
 
       - name: 転送（rsync）
