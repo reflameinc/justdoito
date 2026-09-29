@@ -1,10 +1,18 @@
 # ============================================================
-# 本番自動デプロイ（案B: プルリクのマージ＝公開）
+# 本番自動デプロイ（マージ＝公開・承認なし運用・2026-09-29 本人決定）
 #
-#   プルリク作成・更新 → 検品(check.sh) ＋ 転送の予行演習(dry-run)。本番は変わらない
+#   プルリク作成・更新 → 検品(check.sh) のみ。鍵は使わない・本番は変わらない
 #   main へのマージ     → 検品 → 本番へ転送 → 本番URLと実測照合
+#   戻すとき           → マージ済みプルリクの「Revert」→ そのプルリクをマージ
+#
+#   承認を挟みたくなったら（設定だけで切替・このファイルは変えない）:
+#     マージ前に誰かが見る   = Ruleset の Required approvals を 1 に
+#     本番反映前に誰かが押す = production 環境の Required reviewers に承認者を追加
 #
 # 安全装置:
+#   - SSH鍵は production 環境の Secret にだけ置く（環境の設定で main 限定）
+#     → ブランチやプルリクからは鍵を使えない（この鍵は reflame.co.jp 全体に入れるため）
+#   - .github/ と scripts/ の変更は CODEOWNERS で中山さんのレビュー必須
 #   - 転送先は下の DEPLOY_PATH に固定。/lp/<事業部>/<LP名>/ の形以外なら止まる
 #   - 転送するのは index.html と assets/ だけ（include 方式。scripts/ や README は上がらない）
 #   - 削除同期(--delete)はしない。サーバー側で不要になったファイルは手動で片付ける
@@ -17,10 +25,6 @@ on:
     branches: [main]
   push:
     branches: [main]
-
-concurrency:
-  group: deploy-production
-  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -42,17 +46,24 @@ jobs:
 
   deploy:
     needs: check
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://reflame.co.jp/lp/newgrads/justdoito/
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v5
 
       - name: 実行モードの決定
         id: mode
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ "${{ vars.DEPLOY_ENABLED }}" = "true" ]; then
+          if [ "${{ vars.DEPLOY_ENABLED }}" = "true" ]; then
             echo "dry=" >> "$GITHUB_OUTPUT"; echo "▶ 本番転送モード"
           else
-            echo "dry=--dry-run" >> "$GITHUB_OUTPUT"; echo "▶ 予行演習モード（本番は変わらない）"
+            echo "dry=--dry-run" >> "$GITHUB_OUTPUT"; echo "▶ 予行演習モード（DEPLOY_ENABLED≠true・本番は変わらない）"
           fi
 
       - name: 転送先の検査
@@ -67,8 +78,8 @@ jobs:
           SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
-          [ -n "$SSH_KEY" ] || { echo "🛑 Secret DEPLOY_SSH_KEY が未登録"; exit 1; }
-          [ -n "$KNOWN_HOSTS" ] || { echo "🛑 Secret DEPLOY_KNOWN_HOSTS が未登録"; exit 1; }
+          [ -n "$SSH_KEY" ] || { echo "🛑 Secret DEPLOY_SSH_KEY が未登録（production 環境の Secrets を確認）"; exit 1; }
+          [ -n "$KNOWN_HOSTS" ] || { echo "🛑 Secret DEPLOY_KNOWN_HOSTS が未登録（production 環境の Secrets を確認）"; exit 1; }
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
