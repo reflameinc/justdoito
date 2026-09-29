@@ -6,6 +6,7 @@
 # 移植時の差分:
 #   - 項目1「作業コピーとの一致」は削除（GitHubが入口＝リポジトリ自体が正本のため）
 #   - 項目4 の参照アセット検査に srcset と CSS url() を追加（preflight.sh の漏れ）
+#   - 項目0 の転送ファイル許可リストを追加（2026-09-29・deploy-files.sh と共通）
 #
 # 使い方:  bash scripts/check.sh <LPのルート>   （既定 = カレントディレクトリ）
 #          IS_MAIN=1 のときだけ noindex を要求しない（メインLP用）
@@ -20,6 +21,16 @@ ok(){   echo "  ✓ $1"; }
 
 echo "=== $t"
 if [ ! -f "$h" ]; then stop "index.html が無い"; echo "🛑 デプロイしません"; exit 1; fi
+
+# --- 0) 転送ファイルの許可リスト（scripts/deploy-files.sh と同じ判定。転送もこの一覧だけを送る）
+#   2026-09-29 追加: assets/ に php・.htaccess・シンボリックリンクを置くと、Code Owners を通らずに
+#   サーバー全体（WordPress・wp-config.php）へ届くため。ここで止める。
+here="$(cd "$(dirname "$0")" && pwd)"
+if list=$(bash "$here/deploy-files.sh" "$t" 2> >(while IFS= read -r l; do echo "  $l"; done >&2)); then
+  ok "転送ファイル $(printf '%s\n' "$list" | grep -c .) 件・全て許可リスト内（index.html＋assets の画像/css/js/フォント/動画）"
+else
+  stop "許可リスト外のファイルがある（上の 🛑 の行）。php・.htaccess・svg・html・シンボリックリンク等は本番へ送れない"
+fi
 
 # --- 2) noindex（メイン以外は必須）
 if [ "${IS_MAIN:-0}" = "1" ]; then ok "メインLP（noindex不要）"
