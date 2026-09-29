@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>就活コーチング｜27卒・28卒のための1対1キャリアコーチング</title>
+<meta name="description" content="自分の未来に、責任を持てる選択を。誰もが最初は、就活初心者。就活のプロが1対1・60分で、あなたの現在地と次の一手を言葉にします。オンライン／無料。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="就活コーチング｜27卒・28卒のための1対1キャリアコーチング">
+<meta property="og:description" content="自分の未来に、責任を持てる選択を。1対1のキャリアコーチング／オンライン60分・無料。">
+<meta property="og:image" content="https://reflame.co.jp/lp/newgrads/justdoito/assets/ogp.jpg">
+<meta property="og:site_name" content="就活コーチング｜株式会社REFLAME">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://reflame.co.jp/lp/newgrads/justdoito/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://reflame.co.jp/lp/newgrads/justdoito/">
+
+<!--
+==================================================================
+  就活コーチング LP（担当：伊藤 頼扶さん）
+  用途：TikTok @shukatsu.coach プロフィールリンクの着地ページ
+  制作：株式会社REFLAME マーケティング部／最終更新 2026-09-28
+------------------------------------------------------------------
+  ■ 設置方法
+   index.html と assets/ を同じ階層のまま、公開したいパスへアップするだけ。
+   ビルド・依存パッケージは不要（静的HTML1枚）。
+------------------------------------------------------------------
+  ■ 公開前に必ず対応（3件）
+   1. OGP／canonical の ★公開ドメイン★ と ★パス★ を実URLへ置換（この直上の6行）
+      ※OGPは絶対URLでないとSNS側で画像が出ません
+   2. フッターのリンク3つ（プライバシーポリシー／利用規約／運営会社）が href="#" のまま
+   3. Salesforce で「CORS 許可されたオリジン」に公開ドメインを登録
+      → 未登録だと予約ウィジェットが "Failed to fetch" になります
+        （その場合も下の「予約ページを開く」ボタンから予約は可能）
+------------------------------------------------------------------
+  ■ 設定済みの導線
+   LINE     : https://line.me/R/ti/p/@514vrprd        （data-cv="line" の5箇所）
+   面談予約 : https://designer.my.site.com/scheduling?slug=tiktoklive-ito
+   Instagram: https://www.instagram.com/_rraaiiffuu_/
+   TikTok   : https://www.tiktok.com/@shukatsu.coach
+------------------------------------------------------------------
+  ■ 計測タグを入れる場合
+   </head> の直前に GA4 / TikTok Pixel を追加。
+   CTAには data-cv="line" / data-cv="meeting" を付与済みなので、
+   クリック計測はこの属性で2つの入口を出し分けられます。
+------------------------------------------------------------------
+  ■ 数値の根拠（景表法）
+   1,200名／97.2%／400社 は 2025年9月〜2026年9月、満足度は n=490。
+   数値を変更する際は、必ず集計期間と母数(n)も併せて更新すること。
+------------------------------------------------------------------
+  ■ 技術メモ
+   ・外部依存は Google Fonts と Salesforce の予約ウィジェットのみ
+   ・画像は WebP 優先＋JPEG/PNG フォールバック（<picture>）
+   ・レスポンシブ境界は 860px（未満＝スマホ構成）
+==================================================================
+-->
+
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ================= TOKENS ================= */
+:root{
+  color-scheme: light;
+  --black:#0A0A0A;
+  --black-2:#161A1E;
+  --ink:#111417;
+  --ink-2:#3C454F;
+  --sub:#69737E;
+  --line:#D9E3EC;
+  --line-dark:rgba(255,255,255,.18);
+  --white:#FFFFFF;
+  /* 添付画像のペールブルー */
+  --pale:#E9F1F8;
+  --pale-2:#D6E6F2;
+  --pale-3:#BFD7E9;
+  --accent:#123A61;
+
+  --ff-jp:"Zen Kaku Gothic New","Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;
+  --ff-en:"Jost","Zen Kaku Gothic New",sans-serif;
+  --ff-mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --maxw:1120px;
+  --gutter:22px;
+}
+
+/* ================= BASE ================= */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:var(--ff-jp);font-weight:400;font-size:15px;line-height:2.0;
+  letter-spacing:.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:calc(74px + env(safe-area-inset-bottom));
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+/* 見出しは太字にしない（ミズカラ準拠） */
+h1,h2,h3,h4{font-weight:500;margin:0;letter-spacing:.05em}
+h2{font-family:var(--ff-mincho)}
+h2{font-size:clamp(25px,6.8vw,42px);line-height:1.55;font-weight:500}
+.h2--tight{font-size:clamp(21px,5.55vw,40px)}
+h3{font-size:17px;line-height:1.7;font-weight:500}
+p{margin:0}
+
+.en{font-family:var(--ff-en);font-weight:400;letter-spacing:.18em}
+
+/* ラベル（英字＋和文ルビ） */
+.label{margin-bottom:26px}
+.label__en{display:block;font-family:var(--ff-en);font-size:11px;font-weight:400;
+  letter-spacing:.24em;color:var(--accent)}
+.label__jp{display:block;font-size:10.5px;letter-spacing:.2em;color:var(--sub);margin-top:6px}
+.on-black .label__en{color:#fff}
+.on-black .label__jp{color:rgba(255,255,255,.5)}
+
+/* 区切り罫 */
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* ================= HEADER ================= */
+.hd{position:fixed;inset:0 0 auto 0;z-index:80}
+.hd__bar{display:flex;align-items:stretch;background:var(--white);border-bottom:1px solid var(--line)}
+.hd__logo{display:flex;align-items:center;gap:9px;padding:13px 14px;flex:1 1 auto;min-width:0}
+.hd__logo b{font-family:var(--ff-en);font-size:11.5px;font-weight:500;letter-spacing:.1em;white-space:nowrap}
+.hd__logo span{display:none;font-size:9.5px;letter-spacing:.14em;color:var(--sub);white-space:nowrap;
+  padding-left:10px;margin-left:2px;border-left:1px solid var(--line)}
+.hd__mark{width:20px;height:20px;flex:0 0 auto;background:var(--black);
+  display:grid;place-items:center;border-radius:2px}
+.hd__mark i{display:block;width:8px;height:8px;background:#fff;
+  clip-path:polygon(50% 0,100% 38%,50% 100%,0 38%)}
+.hd__sns{display:flex;align-items:center;gap:12px;padding:0 10px;flex:0 0 auto;color:var(--ink)}
+.hd__sns a{display:grid;place-items:center;opacity:.72;transition:opacity .2s}
+.hd__sns a:hover{opacity:1}
+.hd__sns svg{width:17px;height:17px;display:block}
+.hd__cta{
+  flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--black);color:#fff;
+  padding:0 14px;font-size:11px;letter-spacing:.04em;white-space:nowrap;
+}
+.hd__cta::after{content:"›";font-family:var(--ff-en);font-size:15px;opacity:.8}
+.hd-spacer{height:46px}
+
+/* ================= HERO ================= */
+.hero{position:relative;overflow:hidden;background:#F2F7FB;isolation:isolate}
+/* 背景（★写真スロット：assets/hero-bg.jpg。無い間はCSSのフォールバックが出る） */
+.hero__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero__bgpic{position:absolute;inset:0;z-index:0;display:block;height:100%}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:56% 58%}
+/* 写真の上に白い靄をかけ、黒文字が読める明るさを作る */
+/* モバイル：写真は見出しまでの帯に限定し、それ以下は明るい地で文字を読ませる */
+.hero__haze{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(255,255,255,.50) 0%,rgba(255,255,255,.70) 20%,
+    rgba(255,255,255,.90) 40%,rgba(255,255,255,.93) 66%,rgba(255,255,255,.88) 100%)}
+/* PC：靄は横方向。文字のある左側を明るくし、右の人物側に夕景を残す */
+@media (min-width:860px){
+  .hero__haze{background:
+    linear-gradient(100deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.88) 30%,
+      rgba(255,255,255,.64) 46%,rgba(255,255,255,.28) 62%,rgba(255,255,255,0) 78%)}
+}
+/* 写真に重なる行は白いにじみで下支えする */
+.hero__sub,.hero__lead{text-shadow:0 1px 14px rgba(255,255,255,.85),0 0 4px rgba(255,255,255,.9)}
+/* 斜めの黒パネル（PCのみ） */
+.hero__panel{display:none}
+.hero__vert{display:none}
+/* 人物切り抜き */
+.hero__in picture{position:absolute;z-index:3;right:-10%;bottom:0;height:360px;line-height:0}
+.hero__cut{height:100%;width:auto;max-width:none;
+  filter:drop-shadow(0 20px 46px rgba(30,45,60,.30))}
+/* 本文 */
+.hero__in{position:relative;z-index:4;padding:34px var(--gutter) 340px}
+.hero__slash{width:1px;height:38px;margin-left:5px;background:rgba(20,30,40,.45);
+  transform:rotate(26deg);transform-origin:top left}
+h1{font-family:var(--ff-mincho);font-weight:600;color:var(--ink);
+  font-size:clamp(30px,8.6vw,72px);line-height:1.34;letter-spacing:.01em;margin-top:16px;
+  text-shadow:0 1px 18px rgba(255,255,255,.9),0 0 6px rgba(255,255,255,.8)}
+.hero__sub{font-family:var(--ff-mincho);font-weight:500;color:var(--ink);margin-top:26px;
+  font-size:clamp(17px,5vw,27px);line-height:1.8;letter-spacing:.03em}
+.hero__lead{font-family:var(--ff-mincho);margin-top:22px;font-size:clamp(12px,3.2vw,15px);line-height:2.2;
+  color:var(--ink-2);max-width:30em}
+/* アイコン付きの4項目 */
+.hero__feats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:26px}
+.hero__feat{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:10px;padding:6px 2px;text-align:center;border-right:1px solid rgba(20,40,60,.26)}
+.hero__feat:last-child{border-right:0}
+.hero__feat svg{width:23px;height:23px;flex:0 0 auto;stroke:var(--ink);fill:none;
+  stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.hero__feat span{font-size:10.5px;letter-spacing:.02em;color:var(--ink);line-height:1.5}
+.hero__cta{margin-top:28px}
+/* 「一人じゃない。」ブロック */
+.hero__aside{position:relative;z-index:4;background:#0C1116;color:#fff;padding:30px 0}
+.hero__aside p{font-family:var(--ff-mincho);font-size:15px;line-height:2;letter-spacing:.04em}
+.hero__aside i{display:block;font-style:normal;font-family:var(--ff-en);font-size:10px;
+  letter-spacing:.34em;color:rgba(255,255,255,.62);margin-top:16px;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.2)}
+/* 左下の英字ロックアップ */
+.hero__lockup{position:relative;z-index:4;display:flex;align-items:center;gap:14px;margin-top:24px}
+.hero__lockup::before{content:"";width:32px;height:1px;background:rgba(20,40,60,.4);flex:0 0 auto}
+.hero__lockup b{font-family:var(--ff-en);font-weight:400;font-size:9.5px;letter-spacing:.3em;
+  color:var(--ink-2);line-height:1.95}
+/* 担当者名 */
+.hero__cap{position:relative;z-index:4;background:var(--white);padding:13px 0;
+  border-top:1px solid var(--line)}
+.hero__cap .wrap{display:block}
+.hero__cap i{display:block;font-style:normal;font-size:10px;letter-spacing:.2em;color:var(--sub)}
+.hero__cap b{display:block;margin-top:5px}
+.hero__cap span{display:block;margin-top:5px}
+.hero__cap b{font-size:18px;font-weight:500;letter-spacing:.08em;white-space:nowrap}
+.hero__cap span{font-size:10px;letter-spacing:.1em;color:var(--sub);line-height:1.6}
+
+/* 最終CTA（暗い面）のLINEボタンは白枠で抜く */
+.fin .btn--line{background:transparent;border-color:rgba(255,255,255,.75);color:#fff}
+.fin .btn--line:hover{background:#fff;color:var(--black);border-color:#fff}
+.fin .btn--line .lineico{background:#06C755}
+.fin .btn--line .lineico b{color:#fff}
+
+/* ---- スマホ用CTAバンド（PCでは非表示） ---- */
+.cta-sp{display:none}
+
+/* ================= BUTTON ================= */
+.cta2{display:grid;gap:14px}
+@media (min-width:600px){.cta2{grid-template-columns:1fr 1fr;gap:16px}}
+.cta2__note{margin-top:9px;text-align:center;font-size:10.5px;letter-spacing:.06em;color:var(--sub)}
+.on-black .cta2__note{color:rgba(255,255,255,.58)}
+.btn--line{background:#06C755;border-color:#06C755;color:#fff}
+.btn--line:hover{background:#05A948;border-color:#05A948}
+.btn--book{background:var(--black);border-color:var(--black);color:#fff}
+.btn--book:hover{background:var(--accent);border-color:var(--accent)}
+.btn--line .lineico{width:24px;height:24px;flex:0 0 auto;border-radius:50%;background:#fff;
+  display:grid;place-items:center;margin-right:-4px}
+.btn--line .lineico b{font-family:var(--ff-en);font-weight:500;font-size:8.5px;
+  letter-spacing:.02em;color:#06C755}
+.btn--line .lineico{background:#fff}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  background:var(--black);color:#fff;font-family:var(--ff-jp);font-weight:500;font-size:14.5px;
+  letter-spacing:.06em;padding:20px 30px;border-radius:999px;border:1px solid var(--black);
+  width:100%;transition:background .25s,color .25s,border-color .25s;line-height:1.5;text-align:center;
+}
+.btn::after{content:"›";font-family:var(--ff-en);font-size:19px;line-height:1;opacity:.85}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:#fff}
+.btn--onblack{background:#fff;color:var(--black);border-color:#fff}
+.btn--onblack:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.cta-note{margin-top:14px;font-size:10.5px;letter-spacing:.08em;color:var(--sub);text-align:center;line-height:1.9}
+.on-black .cta-note{color:rgba(255,255,255,.55)}
+
+/* ================= SECTION ================= */
+section{padding:72px 0}
+.s-pale{background:var(--pale)}
+.s-black{background:var(--black);color:#fff}
+.s-black h2,.s-black h3{color:#fff}
+.sec-lead{margin-top:26px;font-size:13.5px;line-height:2.1;color:var(--ink-2)}
+.s-black .sec-lead{color:rgba(255,255,255,.66)}
+
+/* ================= STATS ================= */
+.stats{background:var(--white);margin-top:-1px}
+.stats__box{border:1px solid var(--line);background:var(--white)}
+.stats__box{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:18px 6px;border-right:1px solid var(--line);text-align:center}
+.stat:last-child{border-right:0}
+.stat:last-child{border-bottom:0}
+.stat__jp{font-size:9px;letter-spacing:.02em;color:var(--sub);line-height:1.5}
+.stat__num{font-family:var(--ff-en);font-weight:300;font-size:clamp(24px,7vw,48px);line-height:1.15;
+  letter-spacing:.01em;color:var(--ink);margin-top:6px;white-space:nowrap}
+.stat__num small{font-size:.32em;letter-spacing:.06em;margin-left:2px;color:var(--ink-2)}
+.stats__note{margin-top:18px;font-size:10px;line-height:1.9;color:var(--sub);letter-spacing:.04em}
+.stats__note b{color:#B4551F;font-weight:500}
+
+/* ================= PILLARS（3本柱） ================= */
+.pillars{display:grid;gap:0;margin-top:40px;border-top:1px solid var(--line-dark)}
+.pillar{padding:28px 0;border-bottom:1px solid var(--line-dark)}
+.pillar__no{font-family:var(--ff-en);font-weight:300;font-size:12px;letter-spacing:.22em;
+  color:rgba(255,255,255,.45)}
+.pillar h3{margin-top:12px;font-size:20px;font-weight:400;letter-spacing:.06em}
+.pillar p{margin-top:14px;font-size:13px;line-height:2.1;color:rgba(255,255,255,.66)}
+
+/* ================= PAIN ================= */
+.pains{display:grid;gap:0;margin-top:36px;border-top:1px solid var(--pale-3)}
+.pain{display:flex;gap:16px;align-items:flex-start;padding:20px 2px;border-bottom:1px solid var(--pale-3)}
+.pain__no{font-family:var(--ff-en);font-weight:300;font-size:12px;letter-spacing:.14em;
+  color:var(--accent);flex:0 0 auto;padding-top:5px;opacity:.7}
+.pain p{font-size:14.5px;line-height:1.85;font-weight:400}
+.pain-close{margin-top:40px;text-align:center;font-size:clamp(17px,5vw,26px);font-weight:400;
+  line-height:1.95;letter-spacing:.05em}
+.pain-close em{font-style:normal;border-bottom:1px solid var(--accent);padding-bottom:3px}
+
+/* ================= TAKE AWAY ================= */
+.takes{display:grid;gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.take{padding:30px 0;border-bottom:1px solid var(--line);display:grid;
+  grid-template-columns:62px 1fr;gap:6px 18px;align-items:start}
+.take__no{font-family:var(--ff-en);font-weight:300;font-size:38px;line-height:.9;color:var(--pale-3)}
+.take h3{font-size:19px;font-weight:400;letter-spacing:.06em;padding-top:6px}
+.take p{grid-column:2;font-size:13px;line-height:2.1;color:var(--ink-2);margin-top:12px}
+
+/* ================= REASON ================= */
+.reasons{display:grid;gap:14px;margin-top:38px}
+.reason{background:var(--white);border:1px solid var(--line);padding:26px 22px}
+.reason__no{font-family:var(--ff-en);font-weight:300;font-size:11px;letter-spacing:.22em;color:var(--accent)}
+.reason h3{margin-top:12px;font-size:18px;font-weight:400;letter-spacing:.05em}
+.reason p{margin-top:12px;font-size:13px;line-height:2.05;color:var(--ink-2)}
+
+/* ================= CTA BAND ================= */
+.band{background:var(--pale);padding:48px 0;text-align:center}
+.band__ttl{font-size:clamp(17px,4.8vw,24px);font-weight:400;line-height:1.85;letter-spacing:.05em}
+.band .btn{margin-top:26px}
+
+/* ================= COACH（添付画像の意匠） ================= */
+.coaches{display:grid;gap:24px;margin-top:40px}
+.coach{background:var(--white);border:1px solid var(--line)}
+.coach__top{position:relative;background:var(--pale);aspect-ratio:16/11;overflow:hidden}
+.coach__top::before{content:"";position:absolute;right:-14%;top:-24%;width:82%;height:160%;
+  background:var(--pale-2);transform:skewX(-14deg)}
+.coach__en{position:absolute;left:18px;top:14px;font-family:var(--ff-en);font-weight:400;
+  font-size:clamp(28px,8.6vw,42px);line-height:1;color:#C6D8EB;letter-spacing:.02em}
+.coach__photo{position:absolute;right:0;bottom:0;width:52%;height:94%;object-fit:cover;
+  object-position:top center;z-index:2}
+.coach__photo-ph{position:absolute;right:5%;bottom:0;width:44%;height:88%;z-index:2;
+  background:linear-gradient(180deg,#BCD2E4,#93B2CC);border-radius:120px 120px 0 0;
+  display:grid;place-items:end center;padding-bottom:16px;
+  font-family:var(--ff-en);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.85)}
+.coach__quote{position:absolute;left:18px;bottom:40px;z-index:3;max-width:64%}
+.coach__quote span{display:inline;background:var(--white);
+  box-shadow:9px 0 0 var(--white),-9px 0 0 var(--white);
+  font-size:clamp(14px,4.2vw,18px);font-weight:500;line-height:2;letter-spacing:.03em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.coach__no{position:absolute;left:18px;bottom:14px;z-index:3;font-family:var(--ff-en);
+  font-size:10px;letter-spacing:.2em;color:var(--accent)}
+.coach__btm{display:flex;align-items:center;gap:12px;padding:20px;border-top:1px solid var(--line)}
+.coach__name{font-size:19px;font-weight:500;letter-spacing:.08em}
+.coach__role{font-size:10.5px;letter-spacing:.12em;color:var(--sub);margin-top:4px}
+.coach__more{margin-left:auto;font-size:10.5px;letter-spacing:.1em;color:var(--accent);
+  white-space:nowrap;border-bottom:1px solid var(--pale-3);padding-bottom:3px}
+
+/* ================= FLOW ================= */
+.flow{display:grid;gap:0;margin-top:40px;border-top:1px solid var(--line-dark)}
+.step{display:grid;grid-template-columns:54px 1fr;gap:4px 16px;padding:26px 0;
+  border-bottom:1px solid var(--line-dark)}
+.step__no{font-family:var(--ff-en);font-weight:300;font-size:30px;line-height:1;
+  color:rgba(255,255,255,.4)}
+.step h3{font-size:18px;font-weight:400;letter-spacing:.06em;padding-top:4px}
+.step__body{grid-column:2}
+.step p{font-size:13px;line-height:2.05;color:rgba(255,255,255,.66);margin-top:10px}
+.step__t{display:inline-block;margin-top:12px;font-family:var(--ff-en);font-size:10px;
+  letter-spacing:.16em;color:#fff;border:1px solid var(--line-dark);padding:4px 11px;border-radius:999px}
+
+/* ================= PAIN CARDS ================= */
+.pcards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.pcard{background:var(--white);border:1px solid var(--line);border-bottom:3px solid var(--accent);
+  padding:22px 12px 20px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.pcard__ico{width:78px;height:78px;border-radius:50%;background:var(--white);
+  border:2px solid var(--pale-3);display:grid;place-items:center;overflow:hidden;position:relative}
+.pcard__ico img{width:74%;height:74%;object-fit:contain}
+.pcard p{margin-top:16px;font-size:12.5px;font-weight:500;line-height:1.85;letter-spacing:.01em}
+
+/* ================= PROFILE ================= */
+.prof{display:grid;grid-template-columns:37% 1fr;gap:18px 18px;align-items:start}
+.prof__visual{grid-column:1;grid-row:1}
+.prof__head{grid-column:2;grid-row:1}
+.prof__detail{grid-column:1 / -1;grid-row:2}
+.prof__visual{position:relative;background:var(--pale);aspect-ratio:3/4;overflow:hidden}
+.prof__visual picture{display:block;width:100%;height:100%}
+.prof__visual img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.prof__role{font-size:11px;letter-spacing:.18em;color:var(--accent);margin-top:2px}
+.prof__name{font-family:var(--ff-mincho);font-size:clamp(23px,6.4vw,40px);font-weight:500;
+  line-height:1.4;letter-spacing:.06em;margin-top:10px}
+.prof__name span{display:block;font-family:var(--ff-jp);font-size:11px;letter-spacing:.2em;
+  color:var(--sub);margin-bottom:10px;font-weight:400}
+.prof__dl{display:grid;grid-template-columns:auto 1fr;gap:0;margin:6px 0 0;
+  border-top:1px solid var(--line)}
+.prof__dl dt{padding:12px 16px 12px 0;font-size:10.5px;letter-spacing:.1em;color:var(--sub);
+  border-bottom:1px solid var(--line);white-space:nowrap}
+.prof__dl dd{margin:0;padding:12px 0;font-size:12.5px;line-height:1.8;
+  border-bottom:1px solid var(--line)}
+.prof__msg{margin-top:22px;font-family:var(--ff-mincho);font-size:12.5px;line-height:2.1;
+  color:var(--ink-2)}
+
+/* ================= VOICE ================= */
+.voices{display:grid;gap:16px;margin-top:38px}
+.voice{background:var(--white);border:1px solid var(--line)}
+.voice__ba{display:grid;grid-template-columns:1fr 26px 1fr;align-items:center;
+  border-bottom:1px solid var(--line)}
+.voice__ba>div{padding:16px 12px;text-align:center}
+.voice__ba b{display:block;font-family:var(--ff-en);font-weight:400;font-size:9.5px;
+  letter-spacing:.2em;color:var(--sub)}
+.voice__ba p{margin-top:7px;font-size:12.5px;font-weight:500;line-height:1.7;letter-spacing:.03em}
+.voice__ar{font-family:var(--ff-en);color:var(--pale-3);font-size:17px;padding:0;text-align:center}
+.voice__body{padding:0 20px 22px}
+.voice__ico{width:62px;height:62px;border-radius:50%;background:var(--white);
+  display:grid;place-items:center;margin:-31px auto 16px;border:2px solid var(--pale-3);
+  box-shadow:0 0 0 4px var(--pale)}
+.voice__ico img{width:66%;height:66%;object-fit:contain}
+.voice__body h3{font-size:16px;font-weight:500;line-height:1.85;letter-spacing:.04em}
+.voice__body p{margin-top:12px;font-size:13px;line-height:2.05;color:var(--ink-2)}
+.voice__who{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:10.5px;letter-spacing:.1em;color:var(--sub)}
+
+/* ================= FAQ ================= */
+.faq{margin-top:38px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px 1fr 28px;
+  align-items:start;padding:22px 0;font-size:14.5px;font-weight:500;line-height:1.85;letter-spacing:.04em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{font-style:normal;font-family:var(--ff-en);font-size:12px;letter-spacing:.1em;
+  color:var(--accent);padding-top:5px}
+.faq summary u{text-decoration:none;position:relative;justify-self:end;width:13px;height:13px;margin-top:9px}
+.faq summary u::before,.faq summary u::after{content:"";position:absolute;background:var(--accent);
+  transition:transform .3s,opacity .3s}
+.faq summary u::before{left:0;top:6px;width:13px;height:1px}
+.faq summary u::after{left:6px;top:0;width:1px;height:13px}
+.faq details[open] summary u::after{transform:scaleY(0);opacity:0}
+.faq__a{padding:0 34px 26px;font-size:13.5px;line-height:2.15;color:var(--ink-2)}
+
+/* ================= FINAL CTA ================= */
+.fin{position:relative;background:var(--black);color:#fff;overflow:hidden;padding:80px 0}
+.fin__bg{position:absolute;inset:0;opacity:.30}
+.fin__bg img{width:100%;height:100%;object-fit:cover}
+.fin__ph{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 70% 10%,#22405C 0%,#0A0A0A 66%);opacity:.9}
+.fin__in{position:relative;z-index:2;text-align:center}
+.fin h2{font-size:clamp(24px,6.6vw,40px);font-weight:300;line-height:1.7;letter-spacing:.05em}
+.fin p{margin-top:24px;font-size:13.5px;line-height:2.1;color:rgba(255,255,255,.7)}
+.fin .btn{margin-top:34px}
+
+/* ---- 予約ウィジェット ---- */
+.book{background:var(--white);color:var(--ink);text-align:left;margin-top:34px;
+  border-radius:3px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.book__hd{padding:20px 22px;border-bottom:1px solid var(--line);background:var(--pale)}
+.book__hd .en{display:block;font-size:10px;letter-spacing:.24em;color:var(--accent)}
+.book__hd b{display:block;margin-top:8px;font-family:var(--ff-mincho);font-weight:500;
+  font-size:clamp(15px,4.2vw,20px);line-height:1.7;letter-spacing:.04em}
+.book__steps{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 0;padding:0;list-style:none}
+.book__steps li{display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.03em;
+  color:var(--ink-2);white-space:nowrap}
+.book__steps i{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;
+  background:var(--accent);color:#fff;font-family:var(--ff-en);font-style:normal;font-size:9px;
+  flex:0 0 auto}
+#reflame-booking{min-height:460px;padding:8px}
+#reflame-booking:empty::before{content:"予約フォームを読み込んでいます…";display:grid;
+  place-items:center;min-height:440px;font-size:12px;letter-spacing:.08em;color:var(--sub)}
+.book__fb{padding:18px 22px 22px;border-top:1px solid var(--line);text-align:center}
+.book__fb p{font-size:11.5px;line-height:1.9;color:var(--sub);letter-spacing:.04em;margin-bottom:12px}
+.book__fb .btn{padding:14px 22px;font-size:13px}
+.book__alt{margin-top:32px}
+.book__alt>p{font-size:12.5px;letter-spacing:.06em;color:rgba(255,255,255,.72);margin-bottom:14px}
+
+/* ================= FOOTER ================= */
+.ft{background:var(--black-2);color:rgba(255,255,255,.6);padding:52px 0 40px;font-size:12px}
+.ft__logo{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+.ft__logo b{font-family:var(--ff-en);font-size:15px;font-weight:500;letter-spacing:.14em;color:#fff}
+.ft dl{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;margin:0 0 26px;line-height:1.85;font-size:11.5px}
+.ft dt{color:rgba(255,255,255,.38);letter-spacing:.1em;white-space:nowrap}
+.ft dd{margin:0}
+.ft__links{display:flex;flex-wrap:wrap;gap:10px 20px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.ft__links a{font-size:11px;letter-spacing:.08em}
+.ft__links a:hover{color:#fff}
+.ft__c{margin-top:24px;font-family:var(--ff-en);font-size:9.5px;letter-spacing:.14em;color:rgba(255,255,255,.28)}
+
+/* ================= FIXED CTA ================= */
+.fix{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  transform:translateY(130%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.fix.is-on{transform:translateY(0)}
+.fix__row{display:grid;grid-template-columns:1fr 1.15fr;gap:8px}
+.fix .btn{padding:14px 10px;font-size:12.5px;gap:7px;min-width:0}
+.fix .btn::after{font-size:15px}
+.fix .btn--line .lineico{width:19px;height:19px;margin-right:-2px}
+.fix .btn--line .lineico b{font-size:6.5px}
+.fix small{display:block;text-align:center;font-size:9.5px;letter-spacing:.1em;color:var(--sub);margin-top:6px}
+
+/* ================= ANIM ================= */
+.js .rv{opacity:0;transform:translateY(26px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.js .rv.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+@media (max-width:859px){
+  /* スマホ：黒パネルと添えコピーを外し、コピーを全幅で大きく見せる */
+  .hero__bg img{object-position:52% 60%}
+  .hero__haze{background:
+    linear-gradient(180deg,rgba(255,255,255,.90) 0%,rgba(255,255,255,.94) 40%,
+      rgba(255,255,255,.90) 66%,rgba(255,255,255,.64) 88%,rgba(255,255,255,.40) 100%)}
+  .hero__panel{display:none}
+  .hero__aside{display:none}
+  .hero__cap{display:none}
+  .hero__lockup{display:none}
+  .hero__in{position:relative;z-index:6;padding-top:18px;padding-bottom:76px}
+  .hero__main{max-width:100%}
+  .hero__in picture{right:-6%;bottom:0;top:auto;width:46%;height:262px;overflow:hidden;z-index:5}
+  .hero__cut{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+  .hero__slash{background:rgba(20,30,40,.4);height:24px;margin-left:3px}
+  h1{max-width:100%;min-height:0;margin-top:8px;line-height:1.34;font-size:clamp(25px,8.3vw,40px)}
+  .hero__lead{margin-top:26px;font-size:clamp(11px,3.3vw,15px);line-height:2.0}
+  .hero__feats{grid-template-columns:1fr 1fr;max-width:52%;margin-top:70px;row-gap:0}
+  .hero__feat{padding:10px 2px;gap:6px;border-right:0}
+  .hero__feat:nth-child(odd){border-right:1px solid rgba(20,40,60,.26)}
+  .hero__feat svg{width:20px;height:20px;stroke-width:1.7}
+  .hero__feat span{font-size:10px;font-weight:500;color:var(--ink);
+    text-shadow:0 1px 10px rgba(255,255,255,.95),0 0 3px rgba(255,255,255,.95)}
+  .hero__feat svg{filter:drop-shadow(0 0 3px rgba(255,255,255,.95))}
+  .hero__feats{border-color:rgba(20,40,60,.34)}
+  .hero__feat:nth-child(odd){border-right-color:rgba(20,40,60,.34)}
+  /* CTAはヒーロー外の専用バンドへ */
+  .hero__cta{display:none}
+  .cta-sp{display:block;background:linear-gradient(168deg,#16202A 0%,#0A0E12 100%);
+    padding:26px 0 30px}
+  .cta-sp .cta2{gap:12px}
+  .cta-sp .cta2__note{color:rgba(255,255,255,.6);font-size:10px;margin-top:6px}
+  .cta-sp .btn{padding:16px 16px;font-size:13.5px}
+  .cta-sp .btn--book,.cta-sp .btn--line{background:#fff;color:var(--black);border-color:#fff}
+  .cta-sp .btn--line .lineico{background:#06C755}
+  .cta-sp .btn--line .lineico b{color:#fff}
+  .cta2{gap:8px}
+  .btn{padding:13px 14px;font-size:12.5px;gap:8px}
+  .cta2__note{font-size:9.5px;margin-top:4px}
+  .cta-note{font-size:9.5px}
+  .btn--line .lineico{width:20px;height:20px}
+  .btn--line .lineico b{font-size:7px}
+}
+
+
+/* ================= DESKTOP ================= */
+@media (min-width:860px){
+  :root{--gutter:40px}
+  body{font-size:16px;padding-bottom:0}
+  section{padding:120px 0}
+  .hd-spacer{height:54px}
+  .hd__logo{padding:16px 26px}
+  .hd__logo b{font-size:15px;letter-spacing:.14em}
+  .hd__sns{gap:16px;padding:0 18px}
+  .hd__sns svg{width:18px;height:18px}
+  .hd__logo span{display:inline}
+  .hd__sns{display:flex;align-items:center;gap:12px;padding:0 10px;flex:0 0 auto;color:var(--ink)}
+.hd__sns a{display:grid;place-items:center;opacity:.72;transition:opacity .2s}
+.hd__sns a:hover{opacity:1}
+.hd__sns svg{width:17px;height:17px;display:block}
+.hd__cta{padding:0 28px;font-size:12.5px}
+  .fix{display:none}
+
+  /* ---- HERO（モック準拠：斜めの黒パネル＋縦書き＋人物） ---- */
+  .hero{min-height:calc(100vh - 54px)}
+  .hero__lead{font-size:14.5px}
+  .hero__in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 28%;gap:0;
+    align-items:center;padding:24px var(--gutter) 76px;min-height:calc(100vh - 54px);max-width:1400px}
+  .hero__in picture{right:6%;bottom:0;height:80%}
+  .hero__sub{margin-top:20px}
+  .hero__lead{margin-top:20px;line-height:2.0}
+  .hero__feats{margin-top:20px}
+  .hero__cta{margin-top:22px}
+  h1{margin-top:12px}
+  .hero__main{max-width:none;padding-right:20px}
+  .hero__panel{display:block;position:absolute;top:0;right:0;bottom:0;width:42%;z-index:1;
+    background:linear-gradient(160deg,#141B22 0%,#0A0E12 100%);
+    clip-path:polygon(34% 0, 100% 0, 100% 100%, 8% 100%)}
+  .hero__cut{filter:drop-shadow(-14px 18px 46px rgba(6,10,14,.5))}
+  .hero__vert{display:block;position:absolute;z-index:5;right:0;top:46%;width:11%;
+    display:flex;justify-content:center}
+  .hero__vert span{writing-mode:vertical-rl;font-family:var(--ff-mincho);font-size:13px;
+    letter-spacing:.22em;line-height:1;color:rgba(255,255,255,.8)}
+  .hero__aside{position:absolute;z-index:5;right:3%;top:12%;width:12em;
+    background:none;margin:0;padding:0}
+  .hero__aside .wrap{padding:0;max-width:none}
+  .hero__aside p{font-size:15px;line-height:2.0}
+  .hero__aside i{border-top:0;padding-top:0;margin-top:20px;
+    position:relative;padding-left:0}
+  .hero__aside i::before{content:"";display:block;width:40px;height:1px;
+    background:rgba(255,255,255,.4);margin-bottom:18px}
+  .hero__lockup{position:absolute;left:var(--gutter);bottom:20px;margin:0}
+  .hero__cap{position:absolute;right:4%;bottom:14px;left:auto;margin:0;max-width:330px;z-index:6;
+    padding:15px 22px;border-top:0}
+  .hero__cap .wrap{padding:0;max-width:none}
+  .hero__feats{max-width:600px}
+  .hero__feat{padding:8px 4px}
+  .hero__feat span{font-size:11.5px}
+  .coach__quote{max-width:76%;left:16px;bottom:38px}
+  .coach__quote span{font-size:15px;line-height:1.95}
+  .coach__photo-ph,.coach__photo{width:40%}
+
+  .stat{padding:26px 22px}
+
+  .sec-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:56px;align-items:start}
+  .pillars{margin-top:0}
+  .pcards{grid-template-columns:repeat(4,1fr);gap:18px;margin-top:0}
+  .pcard{padding:30px 18px 26px}
+  .pcard__ico{width:92px;height:92px}
+  .pcard p{font-size:14px;margin-top:20px}
+  .takes{margin-top:0}
+  .prof{grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .prof__visual{aspect-ratio:4/5;grid-row:1 / 3}
+  .prof__head{grid-column:2;grid-row:1;align-self:end}
+  .prof__detail{grid-column:2;grid-row:2}
+  .prof__name{font-size:clamp(28px,4vw,40px)}
+  .prof__dl dt{padding:13px 22px 13px 0;font-size:11px}
+  .prof__dl dd{padding:13px 0;font-size:13.5px}
+  .prof__msg{font-size:13.5px}
+  .coaches{grid-template-columns:repeat(3,1fr)}
+  .voices{grid-template-columns:repeat(3,1fr)}
+  .flow{grid-template-columns:repeat(2,1fr);column-gap:48px;margin-top:0}
+  .faq{margin-top:0}
+
+  .sec-head-c{text-align:center;max-width:44em;margin-inline:auto}
+  .sec-head-c .label__en,.sec-head-c .label__jp{text-align:center}
+  .btn{width:auto;min-width:340px}
+  .cta2 .btn{width:100%;min-width:0}
+  .hero .btn{width:100%;min-width:0}
+  .hero__cta .cta2{max-width:660px}
+  .cta2--fin{max-width:660px;margin-inline:auto}
+  .book{max-width:820px;margin-inline:auto}
+  .book__alt{max-width:440px;margin-inline:auto}
+  #reflame-booking{min-height:560px;padding:14px}
+  .band .cta2{max-width:660px;margin-inline:auto}
+}
+</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5KH7WRCP');</script>
+<!-- End Google Tag Manager -->
+<script>
+/* 着地時にLP識別子と流入情報を dataLayer 変数として積む（event無し＝新トリガー不要）。
+   lp 値 'newgrads_justdoito' は GTMトリガーの条件値。公開後に変えないこと。 */
+(function(){
+  var p=new URLSearchParams(location.search);
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({
+    lp:'newgrads_justdoito',
+    utm_source:p.get('utm_source')||'', utm_medium:p.get('utm_medium')||'',
+    utm_campaign:p.get('utm_campaign')||'', utm_content:p.get('utm_content')||'',
+    ttclid:p.get('ttclid')||'', fbclid:p.get('fbclid')||''
+  });
+})();
+</script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KH7WRCP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ============ HEADER ============ -->
+<header class="hd">
+  <div class="hd__bar">
+    <a href="#top" class="hd__logo">
+      <span class="hd__mark"><i></i></span>
+      <b>SHUKATSU COACHING</b>
+      <span>就活コーチング</span>
+    </a>
+    <div class="hd__sns">
+      <a href="https://www.tiktok.com/@shukatsu.coach" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2.7c.3 2.1 1.5 3.5 3.6 3.7v2.4c-1.3.1-2.6-.3-3.7-1v5.8c0 4.7-4.5 7.1-8.2 4.7-2.4-1.5-2.9-4.9-1.1-7.2.9-1.2 2.5-2 4.1-1.9v2.5c-.4 0-.8.1-1.2.3-1.2.6-1.5 2.3-.6 3.3.9 1 2.7.8 3.3-.5.2-.4.3-.8.3-1.3V2.7h3.5z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/_rraaiiffuu_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <a href="#cv" class="hd__cta">無料で相談する</a>
+  </div>
+</header>
+<div class="hd-spacer" id="top"></div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding:0">
+  <div class="hero__bg">
+    <picture class="hero__bgpic">
+      <source srcset="assets/hero-bg.webp" type="image/webp">
+      <img src="assets/hero-bg.jpg" alt="" width="1555" height="1012">
+    </picture>
+    <div class="hero__haze"></div>
+  </div>
+  <div class="hero__panel"></div>
+
+  <div class="wrap hero__in">
+  <picture>
+    <source srcset="assets/hero.webp" type="image/webp">
+    <img class="hero__cut" src="assets/hero.png" alt="担当コーチ" width="900" height="1369">
+  </picture>
+    <div class="hero__main">
+      <div class="hero__slash"></div>
+      <h1>自分の未来に、<br>責任を持てる選択を。</h1>
+      <p class="hero__lead">
+        迷って、悩んで、立ち止まるのは当然だ。<br>
+        でも、その先に行けるかどうかは、今の選択で変わる。<br>
+        納得できるキャリアのスタートを、一緒に見つけよう。
+      </p>
+      <div class="hero__feats">
+      <div class="hero__feat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>1対1 / 60分</span></div>
+      <div class="hero__feat"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M2 20h20"/></svg><span>オンライン</span></div>
+      <div class="hero__feat"><svg viewBox="0 0 24 24"><path d="M7 5l5 7 5-7M12 12v7M8.5 14h7M8.5 17h7"/></svg><span>何度でも無料</span></div>
+      <div class="hero__feat"><svg viewBox="0 0 24 24"><path d="M20 14a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h12a2 2 0 012 2z"/></svg><span>相談だけでOK</span></div>
+      </div>
+      <div class="hero__cta">
+        <div class="cta2">
+          <div class="cta2__col">
+            <!-- ★LINE_URL に差し替え -->
+            <a href="https://line.me/R/ti/p/@514vrprd" class="btn btn--line" data-cv="line"><span class="lineico"><b>LINE</b></span>LINEで相談する</a>
+            <p class="cta2__note">所要1分／質問だけでもOK</p>
+          </div>
+          <div class="cta2__col">
+            <!-- 面談予約：Salesforce Scheduler -->
+            <a href="#cv" class="btn btn--book" data-cv="meeting">60分の無料面談を予約する</a>
+            <p class="cta2__note">オンライン／完全無料</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero__lockup">
+        <b class="en">CAREER COACHING<br>FOR A BRIGHTER TOMORROW</b>
+      </div>
+    </div>
+  </div>
+
+  <aside class="hero__aside">
+    <div class="wrap"><p>一人じゃない。<br>本気で考える人に、<br>本気で向き合う。</p>
+    <i>BEYOND YOURSELF</i></div>
+  </aside>
+
+  <div class="hero__cap">
+    <div class="wrap">
+      <i>いとう らいふ</i>
+      <b>伊藤 頼扶</b>
+      <span>キャリアアドバイザー</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND（スマホのみ／ヒーロー直下） ============ -->
+<div class="cta-sp">
+  <div class="wrap">
+    <div class="cta2">
+      <div class="cta2__col">
+        <!-- ★LINE_URL（ヒーロー内のボタンと2箇所セットで差し替える） -->
+        <a href="https://line.me/R/ti/p/@514vrprd" class="btn btn--line" data-cv="line"><span class="lineico"><b>LINE</b></span>LINEで相談する</a>
+        <p class="cta2__note">所要1分／質問だけでもOK</p>
+      </div>
+      <div class="cta2__col">
+        <a href="#cv" class="btn btn--book" data-cv="meeting">60分の無料面談を予約する</a>
+        <p class="cta2__note">オンライン／完全無料</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STATS ============ -->
+<section class="stats" style="padding:0 0 72px">
+  <div class="wrap" style="padding-top:44px">
+    <div class="stats__box rv">
+      <div class="stat">
+        <div class="stat__jp">これまでの面談実施数<sup>※1</sup></div>
+        <div class="stat__num">1,200<small>名</small></div>
+      </div>
+      <div class="stat">
+        <div class="stat__jp">面談後アンケートの満足度<sup>※2</sup></div>
+        <div class="stat__num">97.2<small>%</small></div>
+      </div>
+      <div class="stat">
+        <div class="stat__jp">取引企業数<sup>※3</sup></div>
+        <div class="stat__num">400<small>社</small></div>
+      </div>
+    </div>
+    <p class="stats__note rv">
+      ※1 集計期間：2025年9月〜2026年9月／※2 面談後アンケート（2025年9月〜2026年9月、n=490）／※3 2026年9月時点。<br>
+    </p>
+  </div>
+</section>
+
+<!-- ============ ABOUT（黒） ============ -->
+<section id="about" class="s-black on-black">
+  <div class="wrap">
+    <div class="sec-grid">
+      <div class="rv">
+        <div class="label">
+          <span class="label__en">WHAT IS COACHING</span>
+          <span class="label__jp">就活コーチングとは</span>
+        </div>
+        <h2 class="h2--tight">「教える」のではなく、<br>あなたの言葉を「引き出す」。</h2>
+        <p class="sec-lead">
+          就活の正解は、求人サイトの中ではなく、あなたが過ごしてきた時間の中にあります。
+          就活コーチングは、そこにある材料を掘り起こし、他人に伝わる言葉へ翻訳していく作業です。
+        </p>
+      </div>
+      <div class="pillars">
+        <div class="pillar rv">
+          <div class="pillar__no en">01</div>
+          <h3>正解を押し付けない</h3>
+          <p>「この業界がおすすめ」から始めません。あなたが何に納得し、何に違和感を持つのか。質問を重ねて、判断軸そのものを一緒に作ります。</p>
+        </div>
+        <div class="pillar rv">
+          <div class="pillar__no en">02</div>
+          <h3>現在地を構造で示す</h3>
+          <p>自己分析・業界理解・ES・面接。就活を要素に分解し、いまどこが弱いのかを可視化します。頑張る場所を間違えないための地図です。</p>
+        </div>
+        <div class="pillar rv">
+          <div class="pillar__no en">03</div>
+          <h3>明日やることまで決める</h3>
+          <p>「勉強になりました」で終わらせません。面談の最後に、次の1週間で着手するタスクを具体的に決めてから終了します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAIN ============ -->
+<section id="pain" class="s-pale">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:8px">
+      <div class="label">
+        <span class="label__en">COMMON CONCERNS</span>
+        <span class="label__jp">就活でよくある悩み・相談</span>
+      </div>
+      <h2 class="h2--tight">あなたの足が止まっている理由、<br>これじゃないですか？</h2>
+      <p class="sec-lead">就活が止まる原因は、努力不足ではなく「何が足りていないか分からない」ことです。</p>
+    </div>
+    <div class="pcards">
+      <div class="pcard rv">
+        <div class="pcard__ico"><img src="assets/pain01.png" alt="" loading="lazy"></div>
+        <p>自己分析が<br>合っているか不安</p>
+      </div>
+      <div class="pcard rv">
+        <div class="pcard__ico"><img src="assets/pain02.png" alt="" loading="lazy"></div>
+        <p>ガクチカに<br>書けることがない</p>
+      </div>
+      <div class="pcard rv">
+        <div class="pcard__ico"><img src="assets/pain03.png" alt="" loading="lazy"></div>
+        <p>行きたい業界が<br>わからない</p>
+      </div>
+      <div class="pcard rv">
+        <div class="pcard__ico"><img src="assets/pain04.png" alt="" loading="lazy"></div>
+        <p>周りの内定報告に<br>焦っている</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BAND CTA ============ -->
+<div class="band">
+  <div class="wrap">
+    <p class="band__ttl rv">まとまっていない状態のまま、<br>持ってきてください。</p>
+    <div class="rv">
+      <div class="cta2">
+        <div class="cta2__col">
+          <!-- ★LINE_URL -->
+          <a href="https://line.me/R/ti/p/@514vrprd" class="btn btn--line" data-cv="line"><span class="lineico"><b>LINE</b></span>LINEで相談する</a>
+        </div>
+        <div class="cta2__col">
+          <!-- 面談予約：Salesforce Scheduler -->
+          <a href="#cv" class="btn btn--book" data-cv="meeting">60分の無料面談を予約する</a>
+        </div>
+      </div>
+      <p class="cta-note">どちらも完全無料。質問だけの利用でも構いません。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PROFILE ============ -->
+<section id="profile">
+  <div class="wrap">
+    <div class="prof">
+      <div class="prof__visual rv">
+        <picture>
+          <source srcset="assets/profile.webp" type="image/webp">
+          <img src="assets/profile.jpg" alt="キャリアアドバイザー 伊藤頼扶" width="900" height="1188">
+        </picture>
+      </div>
+      <div class="prof__head rv">
+        <div class="label">
+          <span class="label__en">YOUR COACH</span>
+          <span class="label__jp">担当コーチ</span>
+        </div>
+        <p class="prof__role">キャリアアドバイザー</p>
+        <h2 class="prof__name"><span>いとう らいふ</span>伊藤 頼扶</h2>
+      </div>
+      <div class="prof__detail rv">
+        <dl class="prof__dl">
+          <dt>出身</dt><dd>山形県</dd>
+          <dt>大学</dt><dd>國學院大学</dd>
+          <dt>前職</dt><dd>レバレジーズ マーケティング部</dd>
+          <dt>学生時代</dt><dd>NPO法人の設立・運営／バーの経営／長期インターン</dd>
+          <dt>趣味</dt><dd>ランニング／サウナ／パスタ作り</dd>
+        </dl>
+        <p class="prof__msg">
+          いわゆる「強いガクチカ」と言われるような経験ですが、僕自身、周りと比べて「人よりできていない・優秀じゃない」と何回も挫折を味わってきました。<br>
+          置かれた場所ではなく、自分自身を置く場所を一緒に探し、でかい花を一緒に咲かせましょう！
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section id="voice" class="s-pale">
+  <div class="wrap">
+    <div class="rv sec-head-c">
+      <div class="label">
+        <span class="label__en">VOICE</span>
+        <span class="label__jp">受講生の声</span>
+      </div>
+      <h2>面談を受けた人たち</h2>
+    </div>
+    <div class="voices">
+      <div class="voice rv">
+        <div class="voice__ba">
+          <div><b>BEFORE</b><p>就活やる気0・志望業界もない</p></div>
+          <div class="voice__ar en">→</div>
+          <div><b>AFTER</b><p>第一志望を見つけ内定</p></div>
+        </div>
+        <div class="voice__body">
+          <div class="voice__ico"><img src="assets/case01.png" alt="" loading="lazy"></div>
+          <h3>「何をしたいかわからない」が1ヶ月で消えた</h3>
+          <p>就活は嫌なもの、という考えを持っていましたが、逃げたくなる時もあったけど誰よりも伊藤さんが一番向き合ってくれて踏ん張ることができました！</p>
+          <div class="voice__who">大和大学 3年・藤川さん</div>
+        </div>
+      </div>
+      <div class="voice rv">
+        <div class="voice__ba">
+          <div><b>BEFORE</b><p>学歴コンプを抱え就活スタート</p></div>
+          <div class="voice__ar en">→</div>
+          <div><b>AFTER</b><p>コンサル業界に内定承諾</p></div>
+        </div>
+        <div class="voice__body">
+          <div class="voice__ico"><img src="assets/case02.png" alt="" loading="lazy"></div>
+          <h3>「東洋大学からでもコンサルに行けました！」</h3>
+          <p>大学受験に失敗し、本来の第一志望の大学に行った人たちと肩を並べられる就活がしたいと就活をスタート。学歴コンプを抱えていましたが、これまでの僕の経験をきちんとまとめてくれ、夜中まで一緒に対策してくれたおかげで今コンサルで働けています。</p>
+          <div class="voice__who">東洋大学 4年・石井さん</div>
+        </div>
+      </div>
+      <div class="voice rv">
+        <div class="voice__ba">
+          <div><b>BEFORE</b><p>就活を聞ける先輩がいない</p></div>
+          <div class="voice__ar en">→</div>
+          <div><b>AFTER</b><p>無事、大手内定！</p></div>
+        </div>
+        <div class="voice__body">
+          <div class="voice__ico"><img src="assets/case03.png" alt="" loading="lazy"></div>
+          <h3>「先輩のような距離感で伴走してくれました」</h3>
+          <p>地方大学なこともあり、就活を気軽に聞ける人がおらず不安な中でのスタートでした。らいふさんが10ヶ月諦めずに伴走してくれたおかげで大手からの内定を獲得できました！</p>
+          <div class="voice__who">鳥取大学 4年・森岡さん</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-grid">
+      <div class="rv">
+        <div class="label">
+          <span class="label__en">FAQ</span>
+          <span class="label__jp">よくあるご質問</span>
+        </div>
+        <h2>よくあるご質問</h2>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary><i>Q1</i><span>本当に無料ですか？あとから請求されませんか？</span><u></u></summary>
+          <p class="faq__a">完全に無料です。学生の方に費用を請求することは一切ありません。当社は採用が決まった企業側から手数料を受け取る仕組み（有料職業紹介事業）で運営しているためです。</p>
+        </details>
+        <details>
+          <summary><i>Q2</i><span>志望業界も自己分析も、まったく決まっていません。</span><u></u></summary>
+          <p class="faq__a">その状態で来ていただくのがいちばん効果的です。決まっている前提の相談ではなく、「何から決めるか」を一緒に整理するところから始めます。</p>
+        </details>
+        <details>
+          <summary><i>Q3</i><span>紹介された企業は、必ず受けないといけませんか？</span><u></u></summary>
+          <p class="faq__a">いいえ。辞退も、面談だけで終わることも自由です。合わないと感じた企業を無理にお勧めすることはありません。</p>
+        </details>
+        <details>
+          <summary><i>Q4</i><span>何年生から利用できますか？</span><u></u></summary>
+          <p class="faq__a">27卒・28卒の方が中心ですが、学年を問わずご相談いただけます。早い時期ほど選択肢を広く持てます。</p>
+        </details>
+        <details>
+          <summary><i>Q5</i><span>顔出しや、スーツは必要ですか？</span><u></u></summary>
+          <p class="faq__a">どちらも不要です。スマホから、私服・カメラオフで参加していただいて構いません。</p>
+        </details>
+        <details>
+          <summary><i>Q6</i><span>1回だけの利用でも大丈夫ですか？</span><u></u></summary>
+          <p class="faq__a">1回のみでも構いません。逆に、就活が終わるまで何度でも無料でご利用いただけます。回数の制限はありません。</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="cv" class="fin on-black">
+  <div class="fin__ph"></div>
+  <!-- ★写真を敷く場合：fin__bg クラスの div に img を入れる（画像は assets/ へ同梱すること） -->
+  <div class="wrap fin__in">
+    <div class="label rv" style="text-align:center">
+      <span class="label__en">CONTACT</span>
+      <span class="label__jp">無料相談のご予約</span>
+    </div>
+    <h2 class="rv">迷っている時間が、<br>いちばんもったいない。</h2>
+    <p class="rv">いま抱えているモヤモヤを、そのまま持ってきてください。<br>まとまっていなくて大丈夫です。</p>
+    <div class="book rv">
+      <div class="book__hd">
+        <span class="en">BOOKING</span>
+        <b>60分の無料面談を予約する</b>
+        <ol class="book__steps">
+          <li><i>1</i>かんたんな入力（1分）</li>
+          <li><i>2</i>空いている日程を選ぶ</li>
+          <li><i>3</i>予約完了</li>
+        </ol>
+      </div>
+      <!-- 予約ウィジェット：Salesforce Scheduler -->
+      <div id="reflame-booking"></div>
+      <script src="https://designer.my.site.com/schedulingvforcesite/services/apexrest/booking/v1/embed.js" data-slug="tiktoklive-ito" data-target="#reflame-booking"></script>
+      <div class="book__fb">
+        <p>入力フォームが表示されない場合は、こちらから</p>
+        <a href="https://designer.my.site.com/scheduling?slug=tiktoklive-ito" class="btn btn--ghost" data-cv="meeting">予約ページを開く</a>
+      </div>
+    </div>
+    <div class="book__alt rv">
+      <p>予約まではまだ、という方・まず質問だけしたい方は</p>
+      <!-- ★LINE_URL -->
+      <a href="https://line.me/R/ti/p/@514vrprd" class="btn btn--line" data-cv="line"><span class="lineico"><b>LINE</b></span>LINEで相談する</a>
+      <p class="cta-note">どちらも完全無料</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__logo">
+      <span class="hd__mark"><i></i></span>
+      <b>SHUKATSU COACHING</b>
+    </div>
+    <dl>
+      <dt>運営会社</dt><dd>株式会社REFLAME</dd>
+      <dt>所在地</dt><dd>大阪府</dd>
+      <dt>許可番号</dt><dd>有料職業紹介事業 27-ユ-303562</dd>
+    </dl>
+    <div class="ft__links">
+      <a href="https://reflame.co.jp/privacy/">プライバシーポリシー</a>
+      <a href="https://reflame.co.jp/company/">運営会社</a>
+      <a href="https://www.tiktok.com/@shukatsu.coach" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <p class="ft__c">© REFLAME Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ FIXED CTA ============ -->
+<div class="fix" id="fix">
+  <div class="fix__row">
+    <!-- ★LINE_URL -->
+    <a href="https://line.me/R/ti/p/@514vrprd" class="btn btn--line" data-cv="line"><span class="lineico"><b>LINE</b></span>LINEで相談</a>
+    <!-- 面談予約：Salesforce Scheduler -->
+    <a href="#cv" class="btn btn--book" data-cv="meeting">無料面談を予約</a>
+  </div>
+  <small>どちらも完全無料</small>
+</div>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  },{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  var bar = document.getElementById('fix'), cv = document.getElementById('cv');
+  window.addEventListener('scroll', function(){
+    var passed = window.scrollY > window.innerHeight * .7;
+    var atCv = cv.getBoundingClientRect().top < window.innerHeight * .92;
+    bar.classList.toggle('is-on', passed && !atCv);
+  }, {passive:true});
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      var id = a.getAttribute('href');
+      if(id === '#') return;
+      var t = document.querySelector(id);
+      if(!t) return;
+      ev.preventDefault();
+      window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth'});
+    });
+  });
+
+  var ds = document.querySelectorAll('.faq details');
+  ds.forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open) ds.forEach(function(o){ if(o!==d) o.open = false; });
+    });
+  });
+})();
+</script>
+<!-- ============ 計測（2026-09-28 Claude追加） ============
+     ① CTAクリック: data-cv="line" / "meeting" を cta_click として送る（CVではない・中間指標）
+     ② 予約CV: 枠 tiktoklive-ito は cvEnabled=false（config API 2026-09-28実測）＝
+        埋め込みはCVを送らない。ここの lead_submit が唯一の送信元（二重計測にならない）。
+        ★bookingId がある時だけ成果にする。detail.type はお断り時も 'booking' で来るため判定に使わない。
+        ★枠側を cvEnabled=true に変えたら、ここの lead_submit を消すこと（1予約=generate_lead 2件になる）。
+================================================================ -->
+<script>
+(function(){
+  window.dataLayer=window.dataLayer||[];
+  document.addEventListener('click',function(e){
+    var el=e.target.closest&&e.target.closest('[data-cv]');
+    if(!el) return;
+    window.dataLayer.push({event:'cta_click', lp:'newgrads_justdoito', cv_type:el.getAttribute('data-cv')});
+  },true);
+  var done=false;
+  document.addEventListener('reflame-booking:done',function(e){
+    var d=(e&&e.detail)||{}; var bookingId=String(d.bookingId||'');
+    if(!bookingId||done) return; done=true;
+    var p=new URLSearchParams(location.search);
+    window.dataLayer.push({
+      event:'lead_submit', lp:'newgrads_justdoito', cv_source:'embed', booking_id:bookingId,
+      utm_source:p.get('utm_source')||'', utm_medium:p.get('utm_medium')||'',
+      utm_campaign:p.get('utm_campaign')||'', ttclid:p.get('ttclid')||''
+    });
+  });
+})();
+</script>
+</body>
+</html>
